@@ -92,7 +92,7 @@ shell:
   program: /usr/bin/tmux
   args:
     - new-session
-    - 'toolbox enter base'
+#    - 'toolbox enter base'
 
 mouse_bindings:
   - { mouse: Right,                 action: ExpandSelection }
