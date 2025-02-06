@@ -1,0 +1,90 @@
+set number
+set relativenumber
+set background=dark
+
+nnoremap ! :!<Space>
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
+
+let mapleader="\<Space>"
+
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+nnoremap <leader>s :%s/\<<c-r><c-w>\>//gc<left><left><left>
+nnoremap <leader>k :m-2<cr>==
+nnoremap <leader>j :m+<cr>==
+xnoremap <leader>k :m-2<cr>gv=gv
+xnoremap <leader>j :m'>+<cr>gv=gv
+
+nnoremap < <C-w><
+nnoremap > <C-w>>
+nnoremap - <C-w>-
+nnoremap + <C-w>+
+
+noremap H ^
+noremap L g_
+noremap <Down> gj 
+noremap <Up> gk 
+noremap J 10j
+noremap K 10k
+noremap <C-j> }
+noremap <C-k> {
+
+inoremap <C-n> <Esc>lla
+inoremap <C-l> <Esc>la<Space>
+inoremap <C-h> <Left><Left>
+inoremap <C-j> <Esc>o
+inoremap <C-k> <Esc>0i<Enter><Up>
+
+vnoremap _* c*<c-r>"*
+vnoremap _( c(<c-r>")
+vnoremap _[ c[<c-r>"]
+vnoremap _{ c{<c-r>"}
+vnoremap _$ c$<c-r>"$
+vnoremap _" c"<c-r>""
+vnoremap _' c'<c-r>"'
+
+nnoremap _* bi*<Esc>ea*<Esc>
+nnoremap _( bi(<Esc>ea)<Esc>
+nnoremap _[ bi[<Esc>ea]<Esc>
+nnoremap _{ bi{<Esc>ea}<Esc>
+nnoremap _$ bi$<Esc>ea$<Esc>
+nnoremap _" bi"<Esc>ea"<Esc>
+nnoremap _' bi'<Esc>ea'<Esc>
+
+:au FileType tex map <leader>x<CR> :! xelatex -output-directory "$(echo % \| sed 's/\/[^\/]*$//')" "%"<CR><CR>
+:au FileType tex map <leader><CR> :! pdflatex -output-directory "$(echo % \| sed 's/\/[^\/]*$//')" "%"<CR><CR>
+:au FileType tex map O :! zathura $(echo % \| sed 's/tex$/pdf/') & disown<CR><CR> 
+
+:au FileType tex map <leader><leader> <Esc>0jjo
+
+:au FileType tex nnoremap ;be i\begin{enumerate}<CR><CR>\end{enumerate}<Up>\item<Space>
+:au FileType tex nnoremap ;bi i\begin{itemize}<CR><CR>\end{itemize}<Up>\item<Space>
+:au FileType tex nnoremap ;bD i\begin{description}<CR><CR>\end{description}<Up>\item<Space>[]<Esc>i
+:au FileType tex nnoremap ;ba i\begin{align*}<CR><CR>\end{align*}<Up>
+:au FileType tex nnoremap ;bl i\begin{lemma}<CR><CR>\end{lemma}<Up>
+:au FileType tex nnoremap ;bc i\begin{corollary}<CR><CR>\end{corollary}<Up>
+:au FileType tex nnoremap ;bp i\begin{proposition}<CR><CR>\end{proposition}<Up>
+:au FileType tex nnoremap ;bt i\begin{theorem}<CR><CR>\end{theorem}<Up>
+:au FileType tex nnoremap ;pr i\begin{proof}<CR><CR>\end{proof}<Up>
+:au FileType tex nnoremap ;bj i\begin{conjecture}<CR><CR>\end{conjecture}<Up>
+:au FileType tex nnoremap ;bd i\begin{definition}<CR><CR>\end{definition}<Up>
+:au FileType tex nnoremap ;bx i\begin{example}<CR><CR>\end{example}<Up>
+:au FileType tex nnoremap ;bq i\begin{quote}<CR><CR>\end{quote}<Up>
+:au FileType tex nnoremap ;bL i\begin{lstlisting}<CR><CR>\end{lstlisting}<Up>
+:au FileType tex nnoremap ;se i<CR>\section{}<CR><Up><Esc>wwa
+:au FileType tex nnoremap ;ss i<CR>\subsection{}<CR><Up><Esc>wwa
+:au FileType tex nnoremap ;s3 i<CR>\subsubsection{}<CR><Up><Esc>wwa
+:au FileType tex nnoremap ;m <Esc>o<Esc>o<Tab>$$$$<Left><Left>
+
+:au FileType tex inoremap <C-f> \frac{}{}<Left><Left><Left>
+:au FileType tex inoremap <C-b> \mathbb{}<Left>
+:au FileType tex inoremap " ``"<Left>
+:au FileType tex inoremap ; \
+:au FileType tex inoremap \ ;
